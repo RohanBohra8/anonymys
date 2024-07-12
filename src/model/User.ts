@@ -2,7 +2,7 @@ import mongoose, { Schema, Document } from "mongoose";
 
 /*
 jab bhi js use krte hai toh data ka type yaha define krte hai 
-toh data ka type define krne ke liye interface ek common data type hai 
+toh typescript data ka type define krne ke liye interface ek common data type hai 
 usme bs ek general format likhte hai ki koi bhi chiz ata hai toh voh kis fomat me hota hai
 ab yeh schema ya interface bana rahe hai voh mongoose ka hi part hai, kyunki jana toh ise mongoDB me hi hai
 thats why extends is used  
@@ -35,7 +35,7 @@ const MessageSchema: Schema<Message> = new Schema({
 ab hume user ka Schema bana hoga toh easily upar vale ko coppy paste kr dege and modify it 
 
 isme ek chiz interesting hai : har user ke pas messages hoge toh uske har message ka bhi ek document user ke schema me store hoga 
-toh voh schema message name se hoga jiska type ek array hoga kyunki message bhot sare ho skte hai 
+toh voh schema message name soe hga jiska type ek array hoga kyunki message bhot sare ho skte hai 
 and voh array Meesage type ka hoga 
 Message[]
 */ 
@@ -53,7 +53,7 @@ export interface User extends Document{
 /*
 ab User type ka schema bhi bana lete hai 
 
-to check validity of an email 'match' fucn of mongoose is used which takes 2 arguments
+to check validity of an email 'match' func of mongoose is used which takes 2 arguments
 1st arg = RegExr (like a regular expression)
 2nd arg = message to display is enterd email is not valid
 
@@ -108,7 +108,7 @@ Thast why nextjs me data thoda sa diffirent way me export krte hai
 /*
 yha pe return hoke jo model ayega mongoose se uska return type User hona chahiye... koi bhi faltu sa nhi
 
-1st part me dekhte hai ki agar mongoose me pehle se hi koi uUser schema ho toh laake do....
+1st part me dekhte hai ki agar mongoose me pehle se hi koi User schema ho toh laake do....
 par voh user schema should be same AS humara created User schema (type script part hai)
 
 2nd part me matlab monggose me nhi hai schema means first time hi bana rhe hai , bina type script ke ese likhte hai mongoose.model("User", UserSchema)

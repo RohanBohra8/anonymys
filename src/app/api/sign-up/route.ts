@@ -59,7 +59,7 @@ export async function POST(request: Request)
                 //toh new password set kr dege
                 existingUserByEmail.password = hashedPassword; //inbuilt func
                 existingUserByEmail.verifyCode = verifyCode;
-                existingUserByEmail.verifyCodeExpiry = new Date(Date,now() + 3600000) //1 hour ++
+                existingUserByEmail.verifyCodeExpiry = new Date(Date.now() + 3600000) //1 hour ++
                 await existingUserByEmail.save()
             }
         } else {

@@ -26,7 +26,7 @@ export async function POST(request: Request)
         const existingUserVerifiedByUsername = await UserModel.findOne({
             username,
             isverified:true //voh username lake do jo verified hai
-        })
+        });
 
         if(existingUserVerifiedByUsername) {
             return Response.json({
@@ -48,7 +48,7 @@ export async function POST(request: Request)
                 return Response.json({
                     success:false,
                     message:"User already exist wiht this email" 
-                }, {status: 400})
+                }, {status: 400});
                 
             } else {
                 //user existing hai leking verified nhi hai
@@ -79,13 +79,13 @@ export async function POST(request: Request)
             const newUser = new UserModel({
                 username,
                 email,
-                hashedPassword,
+                password: hashedPassword,
                 verifyCode,
-                expiryDate,
+                verifyCodeExpiry: expiryDate,
                 isVerified: false,
                 isAcceptingMessage: true,
-                messages: []
-            })
+                messages: [],
+            });
             await newUser.save()
             
 
@@ -94,19 +94,20 @@ export async function POST(request: Request)
         /*
         pehle toh await krege then jo method tha humare pas sendVerificationEmail
         */
-        const emailResponse = await sendVerificationEmail( email, username, verifyCode )
+        const emailResponse = await sendVerificationEmail( email, username, verifyCode );
         //agar humare pas response successful nhi hua toh 
         if(!emailResponse.success){
             return Response.json({
                 success:false, //email response nhi aa paya hai
-                message:emailResponse //jo emailResponse hai usme bhi message hota hai
-            }, {status: 500})
-            //agar finally resonse sahi raha toh return true krdo
-            return Response.json({
-                success:true, //email response nhi aa paya hai
-                message:"User registered successfully. Please verify your email." //jo emailResponse hai usme bhi message hota hai
-            }, {status: 201})
+                message:emailResponse.message, //jo emailResponse hai usme bhi message hota hai
+            }, {status: 500});
         }
+        //agar finally resonse sahi raha toh return true krdo
+        return Response.json({
+            success:true, //email response nhi aa paya hai
+             message:"User registered successfully. Please verify your email." //jo emailResponse hai usme bhi message hota hai
+        }, {status: 201})
+        
     } catch(error){
         console.log("Error Registering User",error); //yeh terminal pe dikhega 
         //yeh response frontend pe dikhega  

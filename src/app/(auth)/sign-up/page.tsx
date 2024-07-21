@@ -140,7 +140,11 @@ const page = () => {
       });
 
       //asb ho gya toh hum redirect ho jayge ispe
-      router.replace(`/verify/${username}`);
+      router.replace(`/verify/${username}`); 
+      /* agar /verify/username pe redirect hoga toh hume ek route chahiye hoga 
+      , toh uske like username hume capture bhi krna hai becuz
+      backend me verify-code name ka route hai jo username and code as an arguments accept kr rha hai 
+      jiske basis pe unsername verify hoga */
       // AB END ME SUBMITTING FLASE KR DEGE
       setIsSubmitting(false);
     } catch (error) {

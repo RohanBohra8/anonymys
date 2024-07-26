@@ -24,7 +24,7 @@ import { ApiResponse } from '@/types/ApiResponse';
 //type of whatever data we are passing on in the func 
 type MessageCardProps = {
     //TODO :I CHANGES MADE SOMECHANGES HERE ROHAN BE SURE TO SEE IF ANY PROBLEM ARISES IN FUTURE 
-  message: Message & { _id: string }; // Ensure the Message type has _id as a string (YEH WALA CHANGE KIYA HAI)
+    message: Message & { _id: string }; // Ensure the Message type has _id as a string (YEH WALA CHANGE KIYA HAI)
   onMessageDelete: (messageId: string) => void;
 };
 

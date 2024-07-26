@@ -91,7 +91,7 @@ function UserDashboard() {
       setIsSwitchLoading(false);
       try {
         const response = await axios.get<ApiResponse>('/api/get-messages');
-        setMessages(response.data.messages || []); //new messages jo fetch kiye hai voh set esages se set krege aga raaye toh theek nhi toh empty array[]
+        setMessages(response.data.messages as Message[]);//added as scersion here //new messages jo fetch kiye hai voh set esages se set krege aga raaye toh theek nhi toh empty array[]
         //by default refresh false hai but agar true hui toh taost msg bhdo error ka
         if (refresh) {
           toast({
@@ -233,8 +233,8 @@ function UserDashboard() {
           // removed index from prop
           messages.map((message) => (
             <MessageCard
-              key={message.id} //_id -> id
-              message={message.id} //message -> mesage.id
+              key={message._id as string} //did assertion here
+              message={message as Message & {_id: string}} //did assertion here message -> mesage.id
               onMessageDelete={handleDeleteMessage}
             />
           ))

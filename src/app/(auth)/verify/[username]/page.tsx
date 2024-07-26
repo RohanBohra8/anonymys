@@ -25,7 +25,7 @@ export default function VerifyAccount() {
     iske kya hoga kahi pe bhi kisi ko bhi redirect kr skta hu */
   const router = useRouter();
   //ab data params se lege using useParams , isme hum type bhi metion kr skte hai 
-  const params = useParams<{ username: string }>();
+  const params = useParams<{ username: string }>(); // removed <{ username: string }>
   //toast for message popup
   const { toast } = useToast();
   //ab hume form bhi use krna hoga useForm

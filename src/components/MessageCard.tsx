@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react';
 import axios, { AxiosError } from 'axios';
-//import dayjs from 'dayjs';
+import dayjs from 'dayjs';
 import { X } from 'lucide-react';
 import { Message } from '@/model/User';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
@@ -21,23 +21,14 @@ import { Button } from './ui/button';
 import { useToast } from '@/components/ui/use-toast';
 import { ApiResponse } from '@/types/ApiResponse';
 
-//type of whatever data we are passing on in the func 
 type MessageCardProps = {
-    //TODO :I CHANGES MADE SOMECHANGES HERE ROHAN BE SURE TO SEE IF ANY PROBLEM ARISES IN FUTURE 
-    message: Message & { _id: string }; // Ensure the Message type has _id as a string (YEH WALA CHANGE KIYA HAI)
+  message: Message;
   onMessageDelete: (messageId: string) => void;
 };
 
-/* jab bhi message card use krege toh hume kuch data ko passon krna padega 
-1) message
-2) onMessageDelete 
-
-*/
 export function MessageCard({ message, onMessageDelete }: MessageCardProps) {
   const { toast } = useToast();
-    // card message delete krne ke liye function
-    /* message ki id aa gyi hai toh bs sidha API call krke delete krwa dege
-    delete-message ka banaya hi ni abhi .. bna lege badme */
+
   const handleDeleteConfirm = async () => {
     try {
       const response = await axios.delete<ApiResponse>(
@@ -90,7 +81,7 @@ export function MessageCard({ message, onMessageDelete }: MessageCardProps) {
           </AlertDialog>
         </div>
         <div className="text-sm">
-          {/* {dayjs(message.createdAt).format('MMM D, YYYY h:mm A')} */}
+          {dayjs(message.createdAt).format('MMM D, YYYY h:mm A')}
         </div>
       </CardHeader>
       <CardContent></CardContent>

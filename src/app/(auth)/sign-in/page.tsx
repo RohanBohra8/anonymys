@@ -18,9 +18,6 @@ import { useRouter } from 'next/navigation';
 import { useToast } from '@/components/ui/use-toast';
 import { signInSchema } from '@/schemas/signInSchema';
 
-
-//TODO: refer signup file for understanding better rohan
-
 export default function SignInForm() {
   const router = useRouter();
 
@@ -33,23 +30,14 @@ export default function SignInForm() {
   });
 
   const { toast } = useToast();
-
-  /*signin using next auth
-  it needs few thigs: 
-  1) credentials
-  jisme identifier chahhiye  ,password, redirect false krdia 
-  takew yeh kahi redirect na krde  */
   const onSubmit = async (data: z.infer<typeof signInSchema>) => {
-     const result = await signIn('credentials', {
+    const result = await signIn('credentials', {
       redirect: false,
       identifier: data.identifier,
       password: data.password,
     });
 
-    /*ab result me humare pass erro bhi aa skte hai toh sbse easy tarika hai ki check krlo 
-    ki iske andar optionally erro toh ni hai ? */
     if (result?.error) {
-      //agar CredentialsSignin type ka error hoga toh uske correding msg toast krdo
       if (result.error === 'CredentialsSignin') {
         toast({
           title: 'Login Failed',
@@ -57,7 +45,6 @@ export default function SignInForm() {
           variant: 'destructive',
         });
       } else {
-        //nhi toh kuch aur hi type ka error hoga toh error toast kr dege
         toast({
           title: 'Error',
           description: result.error,
@@ -65,8 +52,7 @@ export default function SignInForm() {
         });
       }
     }
-    //yha tk aya toh sb badia hai sign in krke redirect krdo 
-    //user kie dashboard pe
+
     if (result?.url) {
       router.replace('/dashboard');
     }
@@ -119,4 +105,4 @@ export default function SignInForm() {
       </div>
     </div>
   );
-} 
+}

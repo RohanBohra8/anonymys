@@ -12,7 +12,7 @@ ab voh boolean hai but '?' ayega (optional) kyunki zaruri nhi hai ki humesha ek 
 export interface ApiResponse {
     success: boolean;
     message: string;
-    isAcceptingMessages?: boolean;
+    isAcceptingMessage?: boolean;
     messages?: Array<Message>; //
 }
 

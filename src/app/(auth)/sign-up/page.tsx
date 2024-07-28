@@ -98,13 +98,13 @@ export default function SignUpForm() {
   };
 
   return (
-    <div className="flex justify-center items-center min-h-screen bg-gray-800">
+    <div className="flex justify-center items-center min-h-screen bg-[#588157]">
       <div className="w-full max-w-md p-8 space-y-8 bg-white rounded-lg shadow-md">
         <div className="text-center">
           <h1 className="text-4xl font-extrabold tracking-tight lg:text-5xl mb-6">
-            Join True Feedback
+            Register on ANONYMYS
           </h1>
-          <p className="mb-4">Sign up to start your anonymous adventure</p>
+          <p className="mb-4">Please Sign up</p>
         </div>
         <Form {...form}>
           <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
@@ -176,7 +176,7 @@ export default function SignUpForm() {
         <div className="text-center mt-4">
           <p>
             Already a member?{' '}
-            <Link href="/sign-in" className="text-blue-600 hover:text-blue-800">
+            <Link href="/sign-in" className="text-[#3a5a40] hover:text-[#344e41]">
               Sign in
             </Link>
           </p>
